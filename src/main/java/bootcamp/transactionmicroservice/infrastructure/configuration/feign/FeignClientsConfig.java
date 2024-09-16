@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class FeignClientsConfig {
 
     @Bean
-    public RequestInterceptor requestInterceptor() {
+    public static RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
             String token = TokenHolder.getToken();
             if (token != null && !token.isEmpty()) {

@@ -5,8 +5,11 @@ import bootcamp.transactionmicroservice.domain.model.Supply;
 import bootcamp.transactionmicroservice.domain.spi.IArticlePersistencePort;
 import bootcamp.transactionmicroservice.domain.spi.IJwtPersistencePort;
 import bootcamp.transactionmicroservice.domain.spi.ISupplyPersistencePort;
+import bootcamp.transactionmicroservice.domain.until.ExceptionConsts;
+import bootcamp.transactionmicroservice.domain.until.JwtConst;
 import bootcamp.transactionmicroservice.domain.until.SupplyConst;
 import bootcamp.transactionmicroservice.domain.until.TokenHolder;
+import bootcamp.transactionmicroservice.domain.exceptions.SupplyValueException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +28,10 @@ public class SupplyCase implements ISupplyServicePort{
 
     @Override
     public void addSupply(Supply supply) {
-        String token = TokenHolder.getToken().replace("Bearer ", "");
+        if(supply == null){
+            throw new SupplyValueException(ExceptionConsts.SUPPLY_VALUE_EXCEPTION);
+        }
+        String token = TokenHolder.getToken().replace(JwtConst.BEARER, JwtConst.EMPTYSTRING);
         supply.setSupplier(jwtPersistencePort.getUserName(token));
         supply.setSupplierId(jwtPersistencePort.getUserId(token));
         supply.setDate(LocalDateTime.of(LocalDate.now(), LocalTime.now()));

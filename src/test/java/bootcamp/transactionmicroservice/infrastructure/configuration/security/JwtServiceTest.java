@@ -19,7 +19,7 @@ class JwtServiceTest {
     @BeforeEach
     void setUp() {
         jwtService = new JwtService();
-        validJwt = Jwts.builder().setSubject("user").claim("Role", "USER").signWith(Keys.hmacShaKeyFor("mysecretkeymysecretkeymysecretkeymy".getBytes())).compact();
+        validJwt = Jwts.builder().setSubject("user").claim("Role", "USER").claim("Id","123").signWith(Keys.hmacShaKeyFor("mysecretkeymysecretkeymysecretkeymy".getBytes())).compact();
         invalidJwt = "invalidJwt";
     }
 
@@ -53,5 +53,14 @@ class JwtServiceTest {
     @Test
     void extractAllClaims_shouldThrowMalFormJwtException_whenInvalidJwt() {
         assertThrows(MalFormJwtException.class, () -> jwtService.extractAllClaims(invalidJwt));
+    }
+    @Test
+    void extractUserId_shouldReturnUserId_whenValidJwt() {
+        assertEquals(123L, jwtService.extractUserId(validJwt));
+    }
+
+    @Test
+    void extractUserId_shouldThrowMalFormJwtException_whenInvalidJwt() {
+        assertThrows(MalFormJwtException.class, () -> jwtService.extractUserId(invalidJwt));
     }
 }

@@ -26,7 +26,7 @@ public class FeignExceptionHandler implements ErrorDecoder {
         };
     }
 
-    private String getErrorMessage(Response response) {
+    String getErrorMessage(Response response) {
         try {
             if (response.body() != null) {
                 return IOUtils.toString(response.body().asInputStream(), StandardCharsets.UTF_8);

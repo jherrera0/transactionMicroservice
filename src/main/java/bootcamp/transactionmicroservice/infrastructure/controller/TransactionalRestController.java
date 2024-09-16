@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,9 +32,8 @@ public class TransactionalRestController {
 
     @PreAuthorize(JwtConst.HAS_AUTHORITY_AUX_WAREHOUSE)
     @PostMapping(JwtConst.RUTE_TRANSACTION_ADD_SUPPLY)
-    public ResponseEntity addSupply(@RequestHeader(JwtConst.AUTHORIZATION) String token, @RequestBody SupplyRequest supplyRequest) {
+    public void addSupply(@RequestHeader(JwtConst.AUTHORIZATION) String token, @RequestBody SupplyRequest supplyRequest) {
         transactionHandler.addSupply(token,supplyRequest);
-        return ResponseEntity.ok().build();
     }
 
 }

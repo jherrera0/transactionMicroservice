@@ -8,14 +8,10 @@ public class SupplyRequest {
 
     @Positive
     @NotNull
-    @NotBlank
-    @NotEmpty
     private Long productId;
 
     @Positive
     @NotNull
-    @NotBlank
-    @NotEmpty
     private Long quantity;
 
     public SupplyRequest(Long productId, Long quantity) {
@@ -23,19 +19,19 @@ public class SupplyRequest {
         this.quantity = quantity;
     }
 
-    public @Positive @NotNull @NotBlank @NotEmpty Long getProductId() {
+    public @Positive @NotNull Long getProductId() {
         return productId;
     }
 
-    public void setProductId(@Positive @NotNull @NotBlank @NotEmpty Long productId) {
+    public void setProductId(@Positive @NotNull Long productId) {
         this.productId = productId;
     }
 
-    public @Positive @NotNull @NotBlank @NotEmpty Long getQuantity() {
+    public @Positive @NotNull Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(@Positive @NotNull @NotBlank @NotEmpty Long quantity) {
+    public void setQuantity(@Positive @NotNull Long quantity) {
         this.quantity = quantity;
     }
 }
