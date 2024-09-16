@@ -1,6 +1,7 @@
 package bootcamp.transactionMicroservice.infrastructure.configuration.security;
 
 import bootcamp.transactionMicroservice.domain.exceptions.MalFormJwtException;
+import bootcamp.transactionMicroservice.domain.until.JwtConst;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -10,7 +11,7 @@ import java.security.Key;
 
 public class JwtService {
     @Value("${app-security-key}")
-    private String secretKey = "mysecretkeymysecretkeymysecretkeymy";
+    private String secretKey;
 
     public String extractUsername(String jwt) {
         try {
@@ -20,7 +21,7 @@ public class JwtService {
         }
     }
     public String extractRole(String jwt){
-        return extractAllClaims(jwt).get("Role").toString();
+        return extractAllClaims(jwt).get(JwtConst.ROLE).toString();
     }
 
     public Claims extractAllClaims(String jwt) {
@@ -33,5 +34,9 @@ public class JwtService {
 
     Key generateKey() {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
+    }
+
+    public Long extractUserId(String jwt) {
+        return Long.parseLong(extractAllClaims(jwt).get(JwtConst.USER_ID).toString());
     }
 }

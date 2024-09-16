@@ -1,5 +1,7 @@
-package bootcamp.transactionMicroservice.infrastructure.configuration.security;
+package bootcamp.transactionMicroservice.infrastructure.configuration.beancofiguration;
 
+import bootcamp.transactionMicroservice.infrastructure.configuration.security.JwtService;
+import bootcamp.transactionMicroservice.infrastructure.configuration.security.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

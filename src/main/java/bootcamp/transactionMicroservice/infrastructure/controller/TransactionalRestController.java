@@ -1,7 +1,10 @@
 package bootcamp.transactionMicroservice.infrastructure.controller;
 
+import bootcamp.transactionMicroservice.application.http.dto.SupplyRequest;
+import bootcamp.transactionMicroservice.application.http.handler.TransactionHandler;
 import bootcamp.transactionMicroservice.domain.until.DocumentationConsts;
 import bootcamp.transactionMicroservice.domain.until.JwtConst;
+import bootcamp.transactionMicroservice.domain.until.TokenHolder;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,12 +14,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController(JwtConst.RUTE_TRANSACTION)
 @RequiredArgsConstructor
 @Tag(name = DocumentationConsts.TRANSACTION_CONTROLLER_NAME, description = DocumentationConsts.TRANSACTION_CONTROLLER_DESCRIPTION)
 public class TransactionalRestController {
+    private final TransactionHandler transactionHandler;
 
 
     @Operation(summary = DocumentationConsts.TRANSACTION_CONTROLLER_ADD_SUPPLY_NAME)
@@ -28,9 +34,9 @@ public class TransactionalRestController {
 
     @PreAuthorize(JwtConst.HAS_AUTHORITY_AUX_WAREHOUSE)
     @PostMapping(JwtConst.RUTE_TRANSACTION_ADD_SUPPLY)
-    public ResponseEntity addSupply() {
+    public ResponseEntity addSupply(@RequestHeader(JwtConst.AUTHORIZATION) String token, @RequestBody SupplyRequest supplyRequest) {
+        transactionHandler.addSupply(token,supplyRequest);
         return ResponseEntity.ok().build();
-        // add supply
     }
 
 }
