@@ -1,4 +1,4 @@
-package bootcamp.transactionMicroservice.model.exceptions;
+package bootcamp.transactionMicroservice.domain.exceptions;
 
 public class SupplyNotFoundException extends RuntimeException {
     public SupplyNotFoundException( String message) {

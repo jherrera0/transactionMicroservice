@@ -1,6 +1,5 @@
 package bootcamp.transactionMicroservice.domain.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Supply {

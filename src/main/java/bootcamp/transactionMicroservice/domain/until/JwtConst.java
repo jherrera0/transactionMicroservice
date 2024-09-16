@@ -1,7 +1,5 @@
 package bootcamp.transactionMicroservice.domain.until;
 
-import jakarta.persistence.Id;
-
 public class JwtConst {
     public static final String BEARER = "Bearer";
     public static final String AUTHORIZATION = "Authorization";
@@ -13,6 +11,7 @@ public class JwtConst {
 
     public static final String ROLE = "Role";
     public static final String USER_ID = "Id";
+    public static final String EMPTYSTRING = "";
 
     private JwtConst() {
         throw new IllegalStateException("Utility class");

@@ -4,7 +4,6 @@ import bootcamp.transactionMicroservice.application.http.dto.SupplyRequest;
 import bootcamp.transactionMicroservice.application.http.handler.TransactionHandler;
 import bootcamp.transactionMicroservice.domain.until.DocumentationConsts;
 import bootcamp.transactionMicroservice.domain.until.JwtConst;
-import bootcamp.transactionMicroservice.domain.until.TokenHolder;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

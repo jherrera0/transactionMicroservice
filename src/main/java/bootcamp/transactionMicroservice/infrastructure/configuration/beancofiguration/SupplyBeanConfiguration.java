@@ -13,7 +13,6 @@ import bootcamp.transactionMicroservice.domain.spi.ISupplyPersistencePort;
 import bootcamp.transactionMicroservice.domain.usecase.SupplyCase;
 import bootcamp.transactionMicroservice.infrastructure.configuration.security.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
