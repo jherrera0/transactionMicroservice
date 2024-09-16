@@ -1,0 +1,22 @@
+server:
+  port: ${port}
+spring:
+  datasource:
+    url: ${url}
+    username: ${username}
+    password: ${password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app-description: ${description}
+app-version: ${version}
+app-security-key: ${security-key}
+
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: ${path}
+    enabled: true
