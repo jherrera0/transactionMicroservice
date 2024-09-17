@@ -6,8 +6,6 @@ import bootcamp.transactionmicroservice.application.jpa.repository.ISupplyReposi
 import bootcamp.transactionmicroservice.domain.model.Supply;
 import bootcamp.transactionmicroservice.domain.spi.ISupplyPersistencePort;
 
-import bootcamp.transactionmicroservice.domain.until.ExceptionConsts;
-import bootcamp.transactionmicroservice.domain.exceptions.SupplyNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

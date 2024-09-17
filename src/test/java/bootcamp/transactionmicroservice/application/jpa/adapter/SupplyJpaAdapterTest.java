@@ -54,7 +54,7 @@ class SupplyJpaAdapterTest {
         when(supplyRepository.findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
                 supplyEntity.getProductId(), supplyEntity.getQuantity(), supplyEntity.getSupplierId(),
                 supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus()))
-                .thenReturn(Optional.of(supplyEntity));
+                .thenReturn(supplyEntity);
         when(supplyEntityMapper.toModel(supplyEntity)).thenReturn(supply);
 
        supplyJpaAdapter.findBySupply(supply);
@@ -63,39 +63,6 @@ class SupplyJpaAdapterTest {
                 supplyEntity.getProductId(), supplyEntity.getQuantity(), supplyEntity.getSupplierId(),
                 supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus());
         verify(supplyEntityMapper, times(1)).toModel(supplyEntity);
-    }
-
-
-    @Test
-    void findBySupplyWithNonExistingSupply() {
-        Supply supply = new Supply();
-        supply.setProductId(1L);
-        supply.setQuantity(10L);
-        supply.setSupplierId(2L);
-        supply.setSupplier("SupplierName");
-        supply.setDate(LocalDateTime.now());
-        supply.setStatus("Available");
-
-        SupplyEntity supplyEntity = new SupplyEntity();
-        supplyEntity.setProductId(1L);
-        supplyEntity.setQuantity(10L);
-        supplyEntity.setSupplierId(2L);
-        supplyEntity.setSupplier("SupplierName");
-        supplyEntity.setDate(LocalDateTime.now());
-        supplyEntity.setStatus("Available");
-
-        when(supplyEntityMapper.toEntity(supply)).thenReturn(supplyEntity);
-        when(supplyRepository.findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
-                supplyEntity.getProductId(), supplyEntity.getQuantity(), supplyEntity.getSupplierId(),
-                supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus()))
-                .thenReturn(Optional.empty());
-
-        assertThrows(SupplyNotFoundException.class, () -> supplyJpaAdapter.findBySupply(supply));
-
-        verify(supplyRepository, times(1)).findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
-                supplyEntity.getProductId(), supplyEntity.getQuantity(), supplyEntity.getSupplierId(),
-                supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus());
-        verify(supplyEntityMapper, times(0)).toModel(any());
     }
 
     @Test
