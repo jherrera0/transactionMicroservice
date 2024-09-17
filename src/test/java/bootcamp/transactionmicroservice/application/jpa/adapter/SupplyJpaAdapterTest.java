@@ -4,17 +4,12 @@ import bootcamp.transactionmicroservice.application.jpa.entity.SupplyEntity;
 import bootcamp.transactionmicroservice.application.jpa.mapper.ISupplyEntityMapper;
 import bootcamp.transactionmicroservice.application.jpa.repository.ISupplyRepository;
 import bootcamp.transactionmicroservice.domain.model.Supply;
-import bootcamp.transactionmicroservice.domain.exceptions.SupplyNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class SupplyJpaAdapterTest {
