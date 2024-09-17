@@ -28,8 +28,7 @@ public class SupplyJpaAdapter implements ISupplyPersistencePort {
         return supplyEntityMapper.toModel(
                 supplyRepository.findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
                         supplyEntity.getProductId(), supplyEntity.getQuantity(), supplyEntity.getSupplierId(),
-                        supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus())
-                .orElseThrow(() -> new SupplyNotFoundException(ExceptionConsts.SUPPLY_NOT_FOUND))
+                        supplyEntity.getSupplier(), supplyEntity.getDate(), supplyEntity.getStatus())  //pasar al usecase, cambiar de optional a objet
         );
     }
 

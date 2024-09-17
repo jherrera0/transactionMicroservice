@@ -40,6 +40,9 @@ public class SupplyCase implements ISupplyServicePort{
 
         try {
             Supply newSupply =  new Supply(supplyPersistencePort.findBySupply(supply));
+            if(newSupply == null){
+                throw new SupplyValueException(ExceptionConsts.SUPPLY_VALUE_EXCEPTION);
+            }
             articlePersistencePort.addSupply(supply.getProductId(), supply.getQuantity());
             newSupply.setStatus(String.valueOf(SupplyConst.COMPLETED));
             supplyPersistencePort.updateSupply(newSupply);

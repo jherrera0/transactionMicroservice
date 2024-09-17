@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface ISupplyRepository extends JpaRepository<SupplyEntity, Long> {
-        Optional<SupplyEntity> findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
+        SupplyEntity findByProductIdAndQuantityAndSupplierIdAndSupplierAndDateAndStatus(
                 Long productId, Long quantity, Long supplierId, String supplier, LocalDateTime date, String status);
 
         @Modifying
