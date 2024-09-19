@@ -1,7 +1,7 @@
 package bootcamp.transactionmicroservice.infrastructure.controller;
 
 import bootcamp.transactionmicroservice.application.http.dto.SupplyRequest;
-import bootcamp.transactionmicroservice.application.http.handler.TransactionHandler;
+import bootcamp.transactionmicroservice.application.http.handler.interfaces.ITransactionHandler;
 import bootcamp.transactionmicroservice.domain.until.DocumentationConsts;
 import bootcamp.transactionmicroservice.domain.until.JwtConst;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = DocumentationConsts.TRANSACTION_CONTROLLER_NAME, description = DocumentationConsts.TRANSACTION_CONTROLLER_DESCRIPTION)
 public class TransactionalRestController {
-    private final TransactionHandler transactionHandler;
+    private final ITransactionHandler transactionHandler;
 
 
     @Operation(summary = DocumentationConsts.TRANSACTION_CONTROLLER_ADD_SUPPLY_NAME)
